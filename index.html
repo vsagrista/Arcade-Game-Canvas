@@ -4,25 +4,58 @@
 	<title>Canvas</title>
 </head>
 <body>
-  <canvas id="c" width="400px" height="400px"></canvas>
+  <canvas id="c" width="900px" height="600px"></canvas>
 </body>
 <script>
-	var c = document.querySelector('#c');
-	var ctx = c.getContext('2d');
-	ctx.fillRect(100,100,100,100); // coordenate 100-100 Draw a rectangle 100- 100
-	ctx.strokeRect(50,50,50,50);
-	ctx.beginPath();
-	ctx.moveTo(10,10);
-	ctx.lineTo(50,50);
-	ctx.stroke();
-   
+var c = document.querySelector('#c');
+var ctx = c.getContext('2d');
+
+function rectangles() {
+  ctx.fillRect(100,100,100,100); // coordenate 100-100 Draw a rectangle 100- 100
+  ctx.strokeRect(50,50,50,50);
   ctx.strokeRect(200,200,200,200);
+}
+  
+function triangles(){
+  ctx.beginPath();
+  ctx.moveTo(10,10);
+  ctx.lineTo(50,50);
+  ctx.stroke();
+  
   ctx.beginPath();
   ctx.moveTo(250,250);
   ctx.lineTo(350,350);
   ctx.lineTo(350,250);
   ctx.lineTo(250,250);
   ctx.fill();
+}
+
+function scale(){
+	ctx.save(); // This saves the context previous to the scale, translate or rotate. 
+	ctx.scale(1,2); // x * 1 and y * 2 (same with the coordanates)
+  ctx.fillRect(400,200,100,100);
+  ctx.restore(); // We're back at the previous context. Doing this prevents scale appling to everything that comes after.
+}
+
+function translate(){
+	ctx.save();
+  ctx.translate(10,10); // moves horizontally and vertically, n pixels
+  ctx.fillRect(400,200,100,100);	
+  ctx.restore();
+} 
+
+function rotate() {
+	ctx.save();
+	ctx.rotate(20* (Math.PI/180)); // Useing this formala we can rotate 20 degrees
+  ctx.fillRect(400,300,100,100);
+  ctx.restore();
+}
+
+rectangles();
+triangles();
+scale();
+translate();
+rotate();
 
 </script>
 
