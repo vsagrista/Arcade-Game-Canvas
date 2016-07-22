@@ -2,6 +2,21 @@
 <html>
 <head>
 	<title>Canvas</title>
+  <style type="text/css">
+    html, body {
+      width: 100%;
+      height: 100%;
+    }
+    body {
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }  
+    canvas {
+      background-color: #ffeb3b;
+    } 
+  </style>
 </head>
 <body>
   <canvas id="c" width="900px" height="600px"></canvas>
@@ -10,10 +25,22 @@
 var c = document.querySelector('#c');
 var ctx = c.getContext('2d');
 
+function text(){
+  ctx.save();
+  ctx.strokeStyle = '#ff9800';
+  ctx.font = "48px serif";
+  ctx.rotate(-10* (Math.PI/180));
+  ctx.strokeText('Learning Canvas', 100, 100);
+  ctx.restore();
+}
+
 function rectangles() {
   ctx.fillRect(100,100,100,100); // coordenate 100-100 Draw a rectangle 100- 100
   ctx.strokeRect(50,50,50,50);
   ctx.strokeRect(200,200,200,200);
+  ctx.fillStyle = '#e91e63';
+  ctx.lineWidth = 15;
+  ctx.strokeStyle = '#3bffff';
 }
   
 function triangles(){
@@ -49,13 +76,38 @@ function rotate() {
 	ctx.rotate(20* (Math.PI/180)); // Useing this formala we can rotate 20 degrees
   ctx.fillRect(400,300,100,100);
   ctx.restore();
+  ctx.save();
+  ctx.rotate(-10* (Math.PI/180));
+  ctx.strokeRect(400,400,400,200);
+  ctx.restore();
+  ctx.save();
+  ctx.rotate(10* (Math.PI/180));
+  ctx.strokeRect(500,-100,400,200);
+  ctx.restore();
 }
 
+function lines(){
+  ctx.beginPath();
+  ctx.moveTo(0,600);
+  ctx.lineTo(200,450);
+  ctx.stroke();
+  ctx.beginPath();
+  ctx.moveTo(200,450);
+  ctx.lineTo(0,350);
+  ctx.stroke();
+  ctx.beginPath();
+  ctx.moveTo(0,350);
+  ctx.lineTo(470,0);
+  ctx.stroke();
+}
+
+text();
 rectangles();
 triangles();
 scale();
 translate();
 rotate();
+lines();
 
 </script>
 
